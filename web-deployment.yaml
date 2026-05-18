@@ -15,7 +15,6 @@ metadata:
   uid: f5677745-cc88-4be5-890e-7da9beb6ef74
 spec:
   progressDeadlineSeconds: 600
-  replicas: 3
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -32,6 +31,9 @@ spec:
     spec:
       containers:
       - image: docker.io/bootdotdev/synergychat-web:latest
+        envFrom:
+        - configMapRef:
+            name: synergychat-web-configmap
         imagePullPolicy: Always
         name: synergychat-web
         resources: {}
